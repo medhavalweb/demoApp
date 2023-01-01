@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         })
         if(user){
           localStorage.setItem("mobile", this.loginForm.value.mobile);
+          this.alert.success(`Wellcome to ${user.name}`)
           this.router.navigate(['dashboard'])
         }else{
           this.alert.error("User not found!")
