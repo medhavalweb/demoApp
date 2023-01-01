@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
-  { path: 'dashboard/createOrder', component:OrdersComponent},
+  { path: 'dashboard/createorder', component:OrdersComponent},
   { path: 'dashboard/edit/:id', component:DashboardComponent}
 ];
 

@@ -1,3 +1,4 @@
+import { DashboardModule } from './dashboard/dashboard.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
@@ -14,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    DashboardModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(
     ),

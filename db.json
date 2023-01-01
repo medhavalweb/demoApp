@@ -8,6 +8,50 @@
       "cpassword": "111111",
       "id": 1
     }
-
+  ],
+  "products": [
+    {
+      "id": 1,
+      "pcode": "tv001",
+      "productname": "Led Samsung",
+      "price": "30000"
+    },
+    {
+      "id": 2,
+      "pcode": "tv002",
+      "productname": "Led onePluse",
+      "price": "130000"
+    },
+    {
+      "id": 3,
+      "pcode": "tv003",
+      "productname": "Led mi",
+      "price": "28000"
+    },
+    {
+      "id": 4,
+      "pcode": "mb001",
+      "productname": "Iphone 14",
+      "price": "140000"
+    },
+    {
+      "id": 5,
+      "pcode": "mb002",
+      "productname": "Iphone 13",
+      "price": "90000"
+    },
+    {
+      "id": 6,
+      "pcode": "mb003",
+      "productname": "Iphone 12",
+      "price": "70000"
+    },
+    {
+      "id": "4",
+      "pcode": "mb004",
+      "productname": "Iphone 11",
+      "price": "40000"
+    }
   ]
+
 }
