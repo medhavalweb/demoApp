@@ -1,0 +1,67 @@
+<section class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2 col-md-5 offset-lg-3 offset-xl-4 m-md-auto">
+        <div class="logo text-center">
+          <img src="../../../assets/images/logo.png" class="img-fluid" alt="logo">
+        </div>
+        <form class="rounded bg-white shadow-lg p-5" [formGroup]="signupForm" (ngSubmit)="onSignupUser()">
+          <h3 class="text-dark fw-bold fs-4 mb-2 text-center ">Signup to Company Name</h3>
+          <div class="fw-normal text-muted mb-4 text-center">
+            Already Member?
+           <a routerLink="../login" class="fw-blod text-primary text-decoration-none">login an account</a>
+          </div>
+          <hr>
+          <!-- login form input -->
+          <div class="mb-md-2">
+            <label class="mb-md-2">Full Name</label>
+            <input type="text" class="form-control" placeholder="Full Name here" formControlName="name"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Full Name is required</div>
+            </div>
+          </div>
+          <div class="mb-md-2">
+            <label class="mb-md-2">Email</label>
+            <input type="Email" class="form-control" placeholder="Email here" formControlName="email"
+              [ngClass]="{'is-invalid': submitted && f.email.errors}">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required!</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
+          </div>
+          <div class="mb-md-2">
+            <label class="mb-md-2">Mobile Number</label>
+            <input type="Number" class="form-control" placeholder="Mobile Number here" formControlName="mobile"
+              [ngClass]="{'is-invalid': submitted && f.mobile.errors}">
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+              <div *ngIf="f.mobile.errors.required">Mobile No is required</div>
+              <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+              <div *ngIf="f.mobile.errors.maxlength">Mobile must be at maximum 10 characters</div>
+            </div>
+          </div>
+          <div class="mb-md-2">
+            <label class="mb-md-2">Password</label>
+            <input type="password" class="form-control" placeholder="Password here" formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+          <div class="mb-md-2">
+            <label class="mb-md-2">Confrim Password</label>
+            <input type="password" class="form-control" placeholder="Confrim Password here" formControlName="cpassword"
+              [ngClass]="{ 'is-invalid': submitted && f.cpassword.errors }">
+              <div *ngIf="submitted && f.cpassword.errors" class="invalid-feedback">
+                <div *ngIf="f.cpassword.errors.required">Confirm Password is required</div>
+                <div *ngIf="f.cpassword.errors.mustMatch">Passwords must match</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary sumbit_btn w-100 my-4"><i class="fa fa-sign-in mx-2"
+              aria-hidden="true"></i>Signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

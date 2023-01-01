@@ -1,0 +1,13 @@
+{
+  "signupusers": [
+    {
+      "name": "Dhaval Patel",
+      "email": "me.dhavalweb@gmail.com",
+      "mobile": 8155880588,
+      "password": "111111",
+      "cpassword": "111111",
+      "id": 1
+    }
+
+  ]
+}
