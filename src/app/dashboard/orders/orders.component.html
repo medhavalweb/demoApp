@@ -27,6 +27,9 @@
               <label>Order Id</label>
               <span class="text-danger">*</span>
               <input class="form-control" formControlName="orderid">
+              <small *ngIf="f['orderid'].invalid && (f['orderid'].dirty || f['orderid'].touched)"
+              class="form-text text-danger w-100">please enter the orderid !</small>
+
             </div>
           </div>
           <div class="col-lg-3 p-md-3">
@@ -34,7 +37,8 @@
               <label>Date Time</label>
               <span class="text-danger">*</span>
               <input type="date" class="form-control" formControlName="date">
-
+              <small *ngIf="f['date'].invalid && (f['date'].dirty || f['date'].touched)"
+                class="form-text text-danger w-100">please select the date !</small>
             </div>
           </div>
           <div class="col-lg-3 p-md-3">
@@ -42,6 +46,8 @@
               <label>Party Name</label>
               <span class="text-danger">*</span>
               <input class="form-control" formControlName="partyname">
+              <small *ngIf="f['partyname'].invalid && (f['partyname'].dirty || f['partyname'].touched)"
+                class="form-text text-danger w-100">party name is required !</small>
 
             </div>
           </div>
@@ -50,7 +56,8 @@
               <label>City</label>
               <span class="text-danger">*</span>
               <input class="form-control" formControlName="city" >
-
+              <small *ngIf="f['city'].invalid && (f['city'].dirty || f['city'].touched)"
+              class="form-text text-danger w-100">City is required !</small>
             </div>
           </div>
 
@@ -62,7 +69,8 @@
                 <option value="default">----</option>
                 <option *ngFor="let orderby of orderBy">{{orderby}}</option>
               </select>
-
+              <small *ngIf="f['orderby'].invalid && (f['orderby'].dirty || f['orderby'].touched)"
+                class="form-text text-danger w-100">please select order by is required !</small>
             </div>
           </div>
           <div class="col-lg-3 mb-md-3">
@@ -73,6 +81,8 @@
                 <option value="default">----</option>
                 <option *ngFor="let priorty of priorty">{{priorty}}</option>
               </select>
+              <small *ngIf="f['priorty'].invalid && (f['priorty'].dirty || f['priorty'].touched)"
+                class="form-text text-danger w-100">please select priorty is required !</small>
 
             </div>
           </div>
@@ -84,7 +94,8 @@
                 <option value="default">----</option>
                 <option *ngFor="let deliverymode of deliverymode">{{deliverymode}}</option>
               </select>
-
+              <small *ngIf="f['deliverymode'].invalid && (f['deliverymode'].dirty || f['deliverymode'].touched)"
+                class="form-text text-danger w-100">please select order by is required !</small>
             </div>
           </div>
           <div class="col-lg-3 mb-md-3">
@@ -95,7 +106,8 @@
                 <option value="default">----</option>
                 <option *ngFor="let satus of satus">{{satus}}</option>
               </select>
-
+              <small *ngIf="f['status'].invalid && (f['status'].dirty || f['status'].touched)"
+                class="form-text text-danger w-100">please select status is required !</small>
             </div>
           </div>
         </div>
@@ -125,10 +137,10 @@
                     <input class="form-control" formControlName="productname">
                   </td>
                   <td>
-                    <input class="form-control" formControlName="qty">
+                    <input class="form-control" (change)="qtyChange(i)"formControlName="qty">
                   </td>
                   <td>
-                    <input class="form-control" formControlName="price">
+                    <input class="form-control" (change)="qtyChange(i)" formControlName="price">
                   </td>
                   <td>
                     <input class="form-control" formControlName="totalamount" >

@@ -34,6 +34,10 @@ export class OrdersComponent implements OnInit {
     this.createForm(); // forms grouping function
     this.getProducts(); // get the product dropdown using
   }
+  //validation purpose
+  get f() {
+    return this.orderForm.controls;
+  }
   // forms grouping function
   createForm() {
     this.orderForm = this._fb.group({
@@ -82,15 +86,41 @@ export class OrdersComponent implements OnInit {
   }
   // select the dropdown and get the values of products
   changeProduct(index: any) {
-    debugger
     this.orderDetailsdArray = this.orderForm.get('orderdetails') as FormArray;
     this.orderProduct = this.orderDetailsdArray.at(index) as FormGroup;
     let productcode = this.orderProduct.get('pcode')?.value;
-    let prdData = this.productsShow.find((p:any) => p.id == productcode);
+    let prdData = this.productsShow.find((p: any) => p.id == productcode);
     if (prdData != null) {
       this.orderProduct.get('productname')?.setValue(prdData.productname);
       this.orderProduct.get('price')?.setValue(prdData.price);
       this.orderProduct.get('totalamount')?.setValue(prdData.price);
+      this.qtyChange(index);
     }
+  }
+  //qty and price change calu method
+  qtyChange(index: any) {
+    this.orderDetailsdArray = this.orderForm.get('orderdetails') as FormArray;
+    this.orderProduct = this.orderDetailsdArray.at(index) as FormGroup;
+    let qty = this.orderProduct.get('qty')?.value;
+    let price = this.orderProduct.get('price')?.value;
+    let total = qty * price;
+    this.orderProduct.get('totalamount')?.setValue(total);
+    this.totalCalculation();
+  }
+  //total Calculation order calu method
+  totalCalculation() {
+    let array = this.orderForm.getRawValue().orderdetails;
+    let sumtotal = 0;
+    array.forEach((x: any) => {
+      sumtotal = sumtotal + x.totalamount;
+      console.log(sumtotal);
+    });
+    //tax
+    let taxcal = (5 / 100) * sumtotal;
+    let nettotalcal = sumtotal + taxcal;
+
+    this.orderForm.get('total')?.setValue(sumtotal);
+    this.orderForm.get('tax')?.setValue(taxcal);
+    this.orderForm.get('netTotal')?.setValue(nettotalcal);
   }
 }

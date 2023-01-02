@@ -7,6 +7,14 @@
       "password": "111111",
       "cpassword": "111111",
       "id": 1
+    },
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "mobile": 1111111111,
+      "password": "111111",
+      "cpassword": "111111",
+      "id": 2
     }
   ],
   "products": [
@@ -53,5 +61,4 @@
       "price": "40000"
     }
   ]
-
 }

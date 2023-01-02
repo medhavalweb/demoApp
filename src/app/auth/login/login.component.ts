@@ -42,12 +42,14 @@ export class LoginComponent implements OnInit {
         })
         if(user){
           localStorage.setItem("mobile", this.loginForm.value.mobile);
-          this.alert.success(`Wellcome to ${user.name}`)
+          this.alert.success(`Wellcome to Company Name`, `${user.name}!`)
           this.router.navigate(['dashboard'])
         }else{
-          this.alert.error("User not found!")
+          this.alert.error('Incrrect Mobile and Password', 'User not found!')
         }
       })
+    }else{
+      this.alert.warning('Please Enter Mobile and Password', 'Validation')
     }
   }
 }
