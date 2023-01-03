@@ -28,6 +28,9 @@ export class OrdersComponent implements OnInit {
   isEdit: boolean = false;
   editData!:any
   editorderData!:any
+  btnsubmit: string = 'Save';
+  isview!:boolean ;
+
   constructor(
     private _fb: FormBuilder,
     private router: Router,
@@ -37,13 +40,19 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isview = false;
     this.createForm(); // forms grouping function
     this.getProducts(); // get the product dropdown using
-
     this.editorderno = this.activateroute.snapshot.paramMap.get('id');
-    if (this.editorderno != null) {
+
+    if (this.editorderno != null && this.router.url.includes('edit')) {
       this.title = 'Edit Order';
       this.isEdit = true;
+      this.editInfo(this.editorderno);
+      this.btnsubmit = 'Update';
+    }
+    else if (this.router.url.includes('view')){
+      this.isview = true;
       this.editInfo(this.editorderno);
     }
   }
@@ -68,34 +77,61 @@ export class OrdersComponent implements OnInit {
       orderdetails: this._fb.array([]),
     });
   }
-  orderdetailsForm() {
+
+  orderdetailsForm(data: any) {
     return this._fb.group({
-      pcode: [''],
-      productname: [''],
-      qty: ['1'],
-      price: ['0'],
-      totalamount: [{ value: 0, disabled: true }],
+      pcode: [data?.pcode ?? ''],
+      productname: [data?.productname ?? ''],
+      qty: [data?.qty ?? '1'],
+      price: [data?.price ?? '0'],
+      totalamount: [{ value:data?.totalamount ?? 0, disabled: true }],
     });
   }
   // get the products
   get products() {
     return this.orderForm.get('orderdetails') as FormArray;
   }
-
-  // edit display info
-  editInfo(id: any) {
-    this.services.getorderbyCode(id).subscribe((res)=>{
-      this.editorderData = res;
-      console.log(this.editorderData);
-      for(let i =0; i<this.editorderData.length; i++){
-        this.addNewProduct()
+  // save function of orders
+  saveOrder() {
+    if (this.orderForm.valid) {
+      if (this.editorderno != null) {
+        this.services
+        .updateOrder(this.editorderno,this.orderForm.getRawValue())
+        .subscribe((res) => {
+          let result: any;
+          result = res;
+          this.alert.success(
+            'Order Updated Sucessfully',
+            `Order:${result.orderid}`
+          );
+          this.router.navigate(['/dashboard']);
+        });
       }
-
-    })
+      else{
+        this.services
+        .saveOrders(this.orderForm.getRawValue())
+        .subscribe((res) => {
+          let result: any;
+          result = res;
+          this.alert.success(
+            'Order Created Sucessfully',
+            `Order:${result.orderid}`
+          );
+          this.router.navigate(['/dashboard']);
+        });
+      }
+    } else {
+      this.alert.warning(
+        'Please enter values in all mandatory filed',
+        `Validation`
+      );
+    }
+  }
+   // edit display info
+   editInfo(id: any) {
     this.services.getorderbyCode(id).subscribe((res) => {
       this.editData = res;
       console.log(this.editData);
-
       if (this.editData != null) {
         this.orderForm.setValue({
           orderid: this.editData.orderid,
@@ -109,38 +145,19 @@ export class OrdersComponent implements OnInit {
           total: this.editData.total,
           tax: this.editData.tax,
           netTotal: this.editData.netTotal,
-          orderdetails: this.editorderData
+          orderdetails: []
         });
-      }
 
+        for(let i =0; i< this.editData.orderdetails.length; i++){
+              this.addNewProduct(this.editData.orderdetails[i])
+         }
+      }
     });
   }
-
-  // save function of orders
-  saveOrder() {
-    if (this.orderForm.valid) {
-      this.services
-        .saveOrders(this.orderForm.getRawValue())
-        .subscribe((res) => {
-          let result: any;
-          result = res;
-          this.alert.success(
-            'Order Created Sucessfully',
-            `Order:${result.orderid}`
-          );
-          this.router.navigate(['/dashboard']);
-        });
-    } else {
-      this.alert.warning(
-        'Please enter values in all mandatory filed',
-        `Validation`
-      );
-    }
-  }
   // add + button add the Product
-  addNewProduct() {
+  addNewProduct(data?: any) {
     this.orderDetailsdArray = this.orderForm.get('orderdetails') as FormArray;
-    this.orderDetailsdArray.push(this.orderdetailsForm());
+    this.orderDetailsdArray.push(this.orderdetailsForm(data));
   }
   // get the product dropdown using
   getProducts() {
@@ -194,4 +211,7 @@ export class OrdersComponent implements OnInit {
     this.orderForm.get('tax')?.setValue(taxcal);
     this.orderForm.get('netTotal')?.setValue(nettotalcal);
   }
+
+
+
 }

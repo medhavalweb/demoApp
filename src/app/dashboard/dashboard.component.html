@@ -2,7 +2,7 @@
 <nav class="navbar navbar-light bg-secondary ">
   <div class="container-fluid">
     <h3 style="color:  aliceblue;">Company Name</h3>
-    <a class="btn btn-danger" (click)="logout()" >logout</a>
+    <a class="btn btn-danger" (click)="logout()">logout</a>
     <!-- <h4 style="color:  aliceblue;"> Management Software</h4> -->
   </div>
 </nav>
@@ -17,7 +17,8 @@
       </div>
       <div class="col-md-4 mt-md-3">
         <form class="d-flex mb-3" role="search">
-          <input class="form-control me-2" [(ngModel)]="searchText" name="search" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" [(ngModel)]="searchText" name="search" type="search" placeholder="Search"
+            aria-label="Search">
         </form>
       </div>
       <div class="col-2 mt-md-3">
@@ -35,7 +36,7 @@
             <thead>
               <tr>
                 <th scope="col" style="width: 5%">Order No.</th>
-                <th scope="col">Date & Time</th>
+                <th scope="col">Date</th>
                 <th scope="col">PartyName</th>
                 <th scope="col">City</th>
                 <th scope="col">Amount</th>
@@ -47,7 +48,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of getOrdersData | filter:searchText">
+              <tr *ngFor="let data of getOrdersData | filter:searchText | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
                 <td>{{data.orderid}}</td>
                 <td>{{data.date}}</td>
                 <td>{{data.partyname}}</td>
@@ -58,13 +59,31 @@
                 <td>{{data.deliverymode}}</td>
                 <td>{{data.status}}</td>
                 <td>
-                  <a class="btn btn-sm btn-primary" (click)="editOrder(data.id)" ><i class="fa fa-pencil mx-1" aria-hidden="true"></i>Edit</a> |
-                  <a class="btn btn-sm btn-danger" (click)="deleteOrder(data.id)"><i class="fa fa-trash mx-1" aria-hidden="true"></i>Delete</a> |
-                  <a class="btn btn-sm btn-success"><i class="fa fa-eye mx-1" aria-hidden="true"></i>View</a>
+                  <a class="btn btn-sm btn-primary" (click)="editOrder(data.id)"><i class="fa fa-pencil mx-1"
+                      aria-hidden="true"></i>Edit</a> |
+                  <a class="btn btn-sm btn-danger" (click)="deleteOrder(data.id)"><i class="fa fa-trash mx-1"
+                      aria-hidden="true"></i>Delete</a> |
+                  <a class="btn btn-sm btn-success" (click)="viewOrder(data.id)"><i class="fa fa-eye mx-1"
+                      aria-hidden="true"></i>View</a>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div class="row">
+            <div class="d-flex">
+              <div class="col-5 mx-1 d-flex">
+                <p class="page mx-2"><strong>Showing of <span>{{getOrdersData.length}} </span>To</strong></p>
+                <select class="cust p-1" (change)="onTableSizeChange($event)">
+                  <option *ngFor="let size of tableSizes">{{size}}</option>
+                </select>
+              </div>
+              <div class="d-flex">
+                <div class="col-lg-12 mx-1">
+                  <pagination-controls previousLabel="Prev" nextLabel="Next"
+              (pageChange)="onTableDataChange($event)"></pagination-controls>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

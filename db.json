@@ -1,14 +1,6 @@
 {
   "signupusers": [
     {
-      "name": "DhavalPatel",
-      "email": "me.dhavalweb@gmail.com",
-      "mobile": 8155880588,
-      "password": "111111",
-      "cpassword": "111111",
-      "id": 1
-    },
-    {
       "name": "test",
       "email": "test@gmail.com",
       "mobile": 1111111111,
@@ -20,100 +12,264 @@
   "products": [
     {
       "id": 1,
-      "pcode": "tv001",
-      "productname": "Led Samsung",
-      "price": "30000"
+      "pcode": "Earbuds1",
+      "productname": "OnePlus",
+      "price": "3000"
     },
     {
       "id": 2,
-      "pcode": "tv002",
-      "productname": "Led onePluse",
-      "price": "130000"
+      "pcode": "Earbuds2",
+      "productname": "Apple pro 1",
+      "price": "5000"
     },
     {
       "id": 3,
-      "pcode": "tv003",
-      "productname": "Led mi",
-      "price": "28000"
+      "pcode": "Earbuds3",
+      "productname": "Samsung",
+      "price": "3500"
     },
     {
       "id": 4,
-      "pcode": "mb001",
-      "productname": "Iphone 14",
-      "price": "140000"
+      "pcode": "Earbuds4",
+      "productname": "Redmi",
+      "price": "2500"
     },
     {
       "id": 5,
-      "pcode": "mb002",
-      "productname": "Iphone 13",
-      "price": "90000"
+      "pcode": "Earbuds5",
+      "productname": "OnePlus buds2",
+      "price": "1500"
     },
     {
       "id": 6,
-      "pcode": "mb003",
-      "productname": "Iphone 12",
-      "price": "70000"
+      "pcode": "Earbuds6",
+      "productname": "Apple pro 2",
+      "price": "7000"
     },
     {
       "id": "4",
-      "pcode": "mb004",
-      "productname": "Iphone 11",
+      "pcode": "Earbuds7",
+      "productname": "Samsung buds2",
       "price": "40000"
     }
   ],
   "orders": [
     {
-      "orderid": "or1",
-      "date": "2023-01-24",
-      "partyname": "testttt",
-      "city": "testtt",
+      "orderid": "ORD001",
+      "date": "2022-09-13",
+      "partyname": "RITESH",
+      "city": "AHMEDABAD",
       "orderby": "SalesMan",
+      "priorty": "High",
+      "deliverymode": "Delivery to Store",
+      "status": "InProcess",
+      "total": 8000,
+      "tax": 400,
+      "netTotal": 8400,
+      "orderdetails": [
+        {
+          "pcode": "1",
+          "productname": "OnePlus",
+          "qty": "1",
+          "price": "3000",
+          "totalamount": 3000
+        },
+        {
+          "pcode": "2",
+          "productname": "Apple pro 1",
+          "qty": "1",
+          "price": "5000",
+          "totalamount": 5000
+        }
+      ],
+      "id": 1
+    },
+    {
+      "orderid": "ORD003",
+      "date": "2022-12-06",
+      "partyname": "JIGNESH",
+      "city": "MUMBAI",
+      "orderby": "PartySlef",
       "priorty": "Low",
       "deliverymode": "Pickup from Store",
       "status": "Inviced",
-      "total": 168000,
-      "tax": 8400,
-      "netTotal": 176400,
+      "total": 13000,
+      "tax": 650,
+      "netTotal": 13650,
       "orderdetails": [
         {
-          "pcode": "4",
-          "productname": "Iphone 14",
+          "pcode": "3",
+          "productname": "Samsung",
           "qty": "1",
-          "price": "140000",
-          "totalamount": 140000
+          "price": "3500",
+          "totalamount": 3500
         },
         {
-          "pcode": "3",
-          "productname": "Led mi",
+          "pcode": "4",
+          "productname": "Redmi",
           "qty": "1",
-          "price": "28000",
-          "totalamount": 28000
+          "price": "2500",
+          "totalamount": 2500
+        },
+        {
+          "pcode": "6",
+          "productname": "Apple pro 2",
+          "qty": "1",
+          "price": "7000",
+          "totalamount": 7000
         }
       ],
       "id": 2
     },
     {
-      "orderid": "ord3",
-      "date": "2023-01-13",
-      "partyname": "test3",
-      "city": "nagpur",
+      "orderid": "ORD003",
+      "date": "2022-12-09",
+      "partyname": "PRIGNESH",
+      "city": "GANDHINAGAR",
+      "orderby": "PartySlef",
+      "priorty": "Medium",
+      "deliverymode": "Pickup from Store",
+      "status": "Deaft",
+      "total": 21500,
+      "tax": 1075,
+      "netTotal": 22575,
+      "orderdetails": [
+        {
+          "pcode": "4",
+          "productname": "Redmi",
+          "qty": "1",
+          "price": "2500",
+          "totalamount": 2500
+        },
+        {
+          "pcode": "6",
+          "productname": "Apple pro 2",
+          "qty": "2",
+          "price": "7000",
+          "totalamount": 14000
+        },
+        {
+          "pcode": "4",
+          "productname": "Redmi",
+          "qty": "1",
+          "price": "2500",
+          "totalamount": 2500
+        },
+        {
+          "pcode": "4",
+          "productname": "Redmi",
+          "qty": "1",
+          "price": "2500",
+          "totalamount": 2500
+        }
+      ],
+      "id": 3
+    },
+    {
+      "orderid": "ORD004",
+      "date": "2022-12-28",
+      "partyname": "TANISI",
+      "city": "GANDHINAGAR",
+      "orderby": "SalesMan",
+      "priorty": "High",
+      "deliverymode": "Delivery to Store",
+      "status": "Inviced",
+      "total": 7000,
+      "tax": 350,
+      "netTotal": 7350,
+      "orderdetails": [
+        {
+          "pcode": "6",
+          "productname": "Apple pro 2",
+          "qty": "1",
+          "price": "7000",
+          "totalamount": 7000
+        }
+      ],
+      "id": 4
+    },
+    {
+      "orderid": "ORD005",
+      "date": "2022-12-30",
+      "partyname": "ASHA",
+      "city": "AHMEDABAD",
+      "orderby": "PartySlef",
+      "priorty": "Medium",
+      "deliverymode": "Pickup from Store",
+      "status": "InProcess",
+      "total": 5000,
+      "tax": 250,
+      "netTotal": 5250,
+      "orderdetails": [
+        {
+          "pcode": "2",
+          "productname": "Apple pro 1",
+          "qty": "1",
+          "price": "5000",
+          "totalamount": 5000
+        }
+      ],
+      "id": 5
+    },
+    {
+      "orderid": "ORD006",
+      "date": "2023-01-04",
+      "partyname": "BHAVI",
+      "city": "PUNE",
       "orderby": "PartySlef",
       "priorty": "Low",
       "deliverymode": "Pickup from Store",
       "status": "Inviced",
-      "total": 90000,
-      "tax": 4500,
-      "netTotal": 94500,
+      "total": 8500,
+      "tax": 425,
+      "netTotal": 8925,
       "orderdetails": [
         {
-          "pcode": "5",
-          "productname": "Iphone 13",
+          "pcode": "3",
+          "productname": "Samsung",
           "qty": "1",
-          "price": "90000",
-          "totalamount": 90000
+          "price": "3500",
+          "totalamount": 3500
+        },
+        {
+          "pcode": "2",
+          "productname": "Apple pro 1",
+          "qty": "1",
+          "price": "5000",
+          "totalamount": 5000
         }
       ],
-      "id": 3
+      "id": 6
+    },
+    {
+      "orderid": "ORD007",
+      "date": "2023-01-02",
+      "partyname": "PRATIK",
+      "city": "GANDHINAGAR",
+      "orderby": "PartySlef",
+      "priorty": "High",
+      "deliverymode": "Delivery to Store",
+      "status": "Inviced",
+      "total": 29000,
+      "tax": 1450,
+      "netTotal": 30450,
+      "orderdetails": [
+        {
+          "pcode": "2",
+          "productname": "Apple pro 1",
+          "qty": "3",
+          "price": "5000",
+          "totalamount": 15000
+        },
+        {
+          "pcode": "6",
+          "productname": "Apple pro 2",
+          "qty": "2",
+          "price": "7000",
+          "totalamount": 14000
+        }
+      ],
+      "id": 7
     }
   ]
 }

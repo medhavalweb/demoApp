@@ -26,4 +26,7 @@ export class OrdersService {
   getorderbyCode(id:any){
     return this._http.get('http://localhost:3000/orders/'+id)
   }
+  updateOrder(id:any, data: any){
+    return this._http.put('http://localhost:3000/orders/'+id, data)
+  }
 }
