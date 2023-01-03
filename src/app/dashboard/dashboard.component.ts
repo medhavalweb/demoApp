@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   count: number = 0;
   tableSize: number = 5;
   tableSizes: any = [5, 10, 15, 20];
+  //sorting
+  sortFiled: { sortOrder: number; filedName: string } | undefined;
   constructor(private router: Router, private services:OrdersService, private alert:ToastrService) {}
 
   ngOnInit(): void {
@@ -57,6 +59,35 @@ export class DashboardComponent implements OnInit {
     this.page = 1;
 
   }
+  //sorting data
+    // sorting the datatable method
+    sortByFiled(filedName: string): void {
+      if (this.sortFiled?.filedName === filedName) {
+        this.sortFiled.sortOrder = this.sortFiled.sortOrder == 1 ? -1 : 1;
+      } else {
+        this.sortFiled = { filedName: filedName, sortOrder: 1 };
+      }
+      this.getOrdersData = this.getOrdersData.sort((a: any, b: any) => {
+        if (this.sortFiled?.sortOrder == -1) {
+          if (b[filedName] < a[filedName]) {
+            return -1;
+          }
+          if (b[filedName] > a[filedName]) {
+            return 1;
+          }
+          return 0;
+        } else {
+          if (a[filedName] < b[filedName]) {
+            return -1;
+          }
+          if (a[filedName] > b[filedName]) {
+            return 1;
+          }
+          return 0;
+        }
+      });
+    }
+
   // logout user
   logout() {
     localStorage.clear();

@@ -30,6 +30,7 @@ export class OrdersComponent implements OnInit {
   editorderData!:any
   btnsubmit: string = 'Save';
   isview!:boolean ;
+  today=new Date();
 
   constructor(
     private _fb: FormBuilder,
@@ -44,7 +45,6 @@ export class OrdersComponent implements OnInit {
     this.createForm(); // forms grouping function
     this.getProducts(); // get the product dropdown using
     this.editorderno = this.activateroute.snapshot.paramMap.get('id');
-
     if (this.editorderno != null && this.router.url.includes('edit')) {
       this.title = 'Edit Order';
       this.isEdit = true;
@@ -53,9 +53,13 @@ export class OrdersComponent implements OnInit {
     }
     else if (this.router.url.includes('view')){
       this.isview = true;
-      this.editInfo(this.editorderno);
+      this.viewInfo(this.editorderno);
     }
   }
+// disable get the today date method
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
   //validation purpose
   get f() {
     return this.orderForm.controls;
@@ -77,7 +81,6 @@ export class OrdersComponent implements OnInit {
       orderdetails: this._fb.array([]),
     });
   }
-
   orderdetailsForm(data: any) {
     return this._fb.group({
       pcode: [data?.pcode ?? ''],
@@ -132,9 +135,9 @@ export class OrdersComponent implements OnInit {
     this.services.getorderbyCode(id).subscribe((res) => {
       this.editData = res;
       console.log(this.editData);
-      if (this.editData != null) {
+      if (this.editData != null && this.isEdit) {
         this.orderForm.setValue({
-          orderid: this.editData.orderid,
+          orderid: [this.editData.orderid],
           date: this.editData.date,
           partyname: this.editData.partyname,
           city: this.editData.city,
@@ -151,6 +154,35 @@ export class OrdersComponent implements OnInit {
         for(let i =0; i< this.editData.orderdetails.length; i++){
               this.addNewProduct(this.editData.orderdetails[i])
          }
+      }
+    });
+  }
+  // view button
+  viewInfo(id: any) {
+    this.services.getorderbyCode(id).subscribe((res) => {
+      this.editData = res;
+      console.log(this.editData);
+      if (this.editData != null) {
+        this.orderForm.setValue({
+          orderid: [this.editData.orderid] ,
+          date: this.editData.date,
+          partyname: this.editData.partyname,
+          city: this.editData.city,
+          orderby: this.editData.orderby,
+          priorty: this.editData.priorty,
+          deliverymode: this.editData.deliverymode,
+          status: this.editData.status,
+          total: this.editData.total,
+          tax: this.editData.tax,
+          netTotal: this.editData.netTotal,
+          orderdetails: []
+        });
+
+        for(let i =0; i< this.editData.orderdetails.length; i++){
+              this.addNewProduct(this.editData.orderdetails[i])
+         }
+
+         this.orderForm.disable();
       }
     });
   }

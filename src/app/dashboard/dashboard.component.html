@@ -35,15 +35,24 @@
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
-                <th scope="col" style="width: 5%">Order No.</th>
-                <th scope="col">Date</th>
-                <th scope="col">PartyName</th>
-                <th scope="col">City</th>
-                <th scope="col">Amount</th>
-                <th scope="col">OrderBy</th>
-                <th scope="col">Priorty</th>
-                <th scope="col">Dev Mode</th>
-                <th scope="col">Status</th>
+                <th scope="col" (click)="sortByFiled('orderid')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Order No.</th>
+                <th scope="col"(click)="sortByFiled('date')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Date</th>
+                <th scope="col"(click)="sortByFiled('partyname')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>PartyName</th>
+                <th scope="col"(click)="sortByFiled('city')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>City</th>
+                <th scope="col"(click)="sortByFiled('total')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Amount</th>
+                <th scope="col" (click)="sortByFiled('orderby')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>OrderBy</th>
+                <th scope="col" (click)="sortByFiled('priorty')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Priorty</th>
+                <th scope="col"(click)="sortByFiled('deliverymode')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Dev Mode</th>
+                <th scope="col" (click)="sortByFiled('status')"><i class="fa fa-arrows-v mx-1"
+                  aria-hidden="true"></i>Status</th>
                 <th scope="col" style="width: 20%">Action</th>
               </tr>
             </thead>

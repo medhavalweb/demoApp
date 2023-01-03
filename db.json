@@ -1,7 +1,7 @@
 {
   "signupusers": [
     {
-      "name": "test",
+      "name": "TestName",
       "email": "test@gmail.com",
       "mobile": 1111111111,
       "password": "111111",
@@ -55,14 +55,16 @@
   ],
   "orders": [
     {
-      "orderid": "ORD001",
+      "orderid": [
+        "ORD001"
+      ],
       "date": "2022-09-13",
-      "partyname": "RITESH",
+      "partyname": "RITESH1",
       "city": "AHMEDABAD",
       "orderby": "SalesMan",
       "priorty": "High",
       "deliverymode": "Delivery to Store",
-      "status": "InProcess",
+      "status": "Inviced",
       "total": 8000,
       "tax": 400,
       "netTotal": 8400,
@@ -166,18 +168,29 @@
       "id": 3
     },
     {
-      "orderid": "ORD004",
+      "orderid": [
+        [
+          "ORD004"
+        ]
+      ],
       "date": "2022-12-28",
       "partyname": "TANISI",
-      "city": "GANDHINAGAR",
+      "city": "GandhiNagar",
       "orderby": "SalesMan",
-      "priorty": "High",
-      "deliverymode": "Delivery to Store",
-      "status": "Inviced",
-      "total": 7000,
-      "tax": 350,
-      "netTotal": 7350,
+      "priorty": "Medium",
+      "deliverymode": "Pickup from Store",
+      "status": "Deaft",
+      "total": 14000,
+      "tax": 700,
+      "netTotal": 14700,
       "orderdetails": [
+        {
+          "pcode": "6",
+          "productname": "Apple pro 2",
+          "qty": "1",
+          "price": "7000",
+          "totalamount": 7000
+        },
         {
           "pcode": "6",
           "productname": "Apple pro 2",
@@ -189,7 +202,9 @@
       "id": 4
     },
     {
-      "orderid": "ORD005",
+      "orderid": [
+        "ORD005"
+      ],
       "date": "2022-12-30",
       "partyname": "ASHA",
       "city": "AHMEDABAD",
@@ -197,9 +212,9 @@
       "priorty": "Medium",
       "deliverymode": "Pickup from Store",
       "status": "InProcess",
-      "total": 5000,
-      "tax": 250,
-      "netTotal": 5250,
+      "total": 6500,
+      "tax": 325,
+      "netTotal": 6825,
       "orderdetails": [
         {
           "pcode": "2",
@@ -207,6 +222,13 @@
           "qty": "1",
           "price": "5000",
           "totalamount": 5000
+        },
+        {
+          "pcode": "5",
+          "productname": "OnePlus buds2",
+          "qty": "1",
+          "price": "1500",
+          "totalamount": 1500
         }
       ],
       "id": 5
@@ -270,6 +292,29 @@
         }
       ],
       "id": 7
+    },
+    {
+      "orderid": "ORD008",
+      "date": "2023-01-03",
+      "partyname": "DHAVAL",
+      "city": "PUNE",
+      "orderby": "PartySlef",
+      "priorty": "Low",
+      "deliverymode": "Pickup from Store",
+      "status": "Inviced",
+      "total": 3000,
+      "tax": 150,
+      "netTotal": 3150,
+      "orderdetails": [
+        {
+          "pcode": "1",
+          "productname": "OnePlus",
+          "qty": "1",
+          "price": "3000",
+          "totalamount": 3000
+        }
+      ],
+      "id": 8
     }
   ]
 }
