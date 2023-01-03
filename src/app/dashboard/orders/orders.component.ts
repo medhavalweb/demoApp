@@ -1,7 +1,7 @@
 import { Product } from './../_shared/product.interface';
 import { OrdersService } from './../_shared/orders.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-  pageTitle = 'Create Order';
+  title = 'Create Order';
   orderBy = ['SalesMan', 'PartySlef'];
   priorty = ['High', 'Low', 'Medium'];
   deliverymode = ['Delivery to Store', 'Pickup from Store'];
@@ -23,16 +23,29 @@ export class OrdersComponent implements OnInit {
   // get products varialble
   productsShow!: any;
   masterProducts: Product[] = [];
+  // edit display info
+  editorderno!: any;
+  isEdit: boolean = false;
+  editData!:any
+  editorderData!:any
   constructor(
     private _fb: FormBuilder,
     private router: Router,
     private alert: ToastrService,
-    private services: OrdersService
+    private services: OrdersService,
+    private activateroute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.createForm(); // forms grouping function
     this.getProducts(); // get the product dropdown using
+
+    this.editorderno = this.activateroute.snapshot.paramMap.get('id');
+    if (this.editorderno != null) {
+      this.title = 'Edit Order';
+      this.isEdit = true;
+      this.editInfo(this.editorderno);
+    }
   }
   //validation purpose
   get f() {
@@ -69,9 +82,60 @@ export class OrdersComponent implements OnInit {
     return this.orderForm.get('orderdetails') as FormArray;
   }
 
+  // edit display info
+  editInfo(id: any) {
+    this.services.getorderbyCode(id).subscribe((res)=>{
+      this.editorderData = res;
+      console.log(this.editorderData);
+      for(let i =0; i<this.editorderData.length; i++){
+        this.addNewProduct()
+      }
+
+    })
+    this.services.getorderbyCode(id).subscribe((res) => {
+      this.editData = res;
+      console.log(this.editData);
+
+      if (this.editData != null) {
+        this.orderForm.setValue({
+          orderid: this.editData.orderid,
+          date: this.editData.date,
+          partyname: this.editData.partyname,
+          city: this.editData.city,
+          orderby: this.editData.orderby,
+          priorty: this.editData.priorty,
+          deliverymode: this.editData.deliverymode,
+          status: this.editData.status,
+          total: this.editData.total,
+          tax: this.editData.tax,
+          netTotal: this.editData.netTotal,
+          orderdetails: this.editorderData
+        });
+      }
+
+    });
+  }
+
   // save function of orders
   saveOrder() {
-    console.log(this.orderForm.value);
+    if (this.orderForm.valid) {
+      this.services
+        .saveOrders(this.orderForm.getRawValue())
+        .subscribe((res) => {
+          let result: any;
+          result = res;
+          this.alert.success(
+            'Order Created Sucessfully',
+            `Order:${result.orderid}`
+          );
+          this.router.navigate(['/dashboard']);
+        });
+    } else {
+      this.alert.warning(
+        'Please enter values in all mandatory filed',
+        `Validation`
+      );
+    }
   }
   // add + button add the Product
   addNewProduct() {
@@ -95,6 +159,13 @@ export class OrdersComponent implements OnInit {
       this.orderProduct.get('price')?.setValue(prdData.price);
       this.orderProduct.get('totalamount')?.setValue(prdData.price);
       this.qtyChange(index);
+    }
+  }
+  // remove button method
+  removeProduct(index: any) {
+    if (confirm('Do you want to remove?')) {
+      this.orderDetailsdArray.removeAt(index);
+      this.totalCalculation();
     }
   }
   //qty and price change calu method

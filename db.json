@@ -60,5 +60,60 @@
       "productname": "Iphone 11",
       "price": "40000"
     }
+  ],
+  "orders": [
+    {
+      "orderid": "or1",
+      "date": "2023-01-24",
+      "partyname": "testttt",
+      "city": "testtt",
+      "orderby": "SalesMan",
+      "priorty": "Low",
+      "deliverymode": "Pickup from Store",
+      "status": "Inviced",
+      "total": 168000,
+      "tax": 8400,
+      "netTotal": 176400,
+      "orderdetails": [
+        {
+          "pcode": "4",
+          "productname": "Iphone 14",
+          "qty": "1",
+          "price": "140000",
+          "totalamount": 140000
+        },
+        {
+          "pcode": "3",
+          "productname": "Led mi",
+          "qty": "1",
+          "price": "28000",
+          "totalamount": 28000
+        }
+      ],
+      "id": 2
+    },
+    {
+      "orderid": "ord3",
+      "date": "2023-01-13",
+      "partyname": "test3",
+      "city": "nagpur",
+      "orderby": "PartySlef",
+      "priorty": "Low",
+      "deliverymode": "Pickup from Store",
+      "status": "Inviced",
+      "total": 90000,
+      "tax": 4500,
+      "netTotal": 94500,
+      "orderdetails": [
+        {
+          "pcode": "5",
+          "productname": "Iphone 13",
+          "qty": "1",
+          "price": "90000",
+          "totalamount": 90000
+        }
+      ],
+      "id": 3
+    }
   ]
 }

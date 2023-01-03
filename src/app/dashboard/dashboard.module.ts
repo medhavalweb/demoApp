@@ -5,6 +5,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -19,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ]
 })
 export class DashboardModule { }
